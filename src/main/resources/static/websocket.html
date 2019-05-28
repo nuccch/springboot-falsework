@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket测试</title>
+</head>
+<body>
+</body>
+<script type="application/javascript" src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+<script type="application/javascript">
+    $(function(){
+        console.log("init...");
+        init();
+    });
+
+    function init() {
+        var ws = new WebSocket("ws://localhost:8080/websocket/text?token=1");
+        ws.onopen = function(event) {
+            console.log("websocket connection open.");
+            ws.send("Hello, I am client, now: " + new Date());
+        };
+
+        ws.onmessage = function(event) {
+            console.log("websocket message received.")
+            console.log(event.data);
+            //ws.close();
+        };
+        
+        ws.onclose = function (event) {
+            console.log("websocket connection close.");
+        };
+
+        ws.onerror = function(event) {
+            console.log("websocket connection error.");
+            console.log(event);
+        };
+    }
+</script>
+</html>

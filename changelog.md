@@ -5,6 +5,10 @@
 
 
 
+
+## 2019.05.28
++ 支持WebSocket: 原生WebSocket API, SockJS, STOMP
+
 ## 2019.05.22
 + 监听信号量并注册关闭钩子
 

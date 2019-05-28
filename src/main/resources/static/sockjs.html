@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SockJS测试</title>
+</head>
+<body>
+</body>
+<script src="https://cdn.staticfile.org/sockjs-client/1.3.0/sockjs.min.js"></script>
+<script type="application/javascript" src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+<script type="application/javascript">
+    $(function(){
+        console.log("init...");
+        init();
+    });
+
+    function init() {
+        var url = "http://localhost:8080/websocket/text?token=1";
+        var sock = new SockJS(url);
+        sock.onopen = function() {
+            console.log("sockjs client open");
+            sock.send("Hello, I am a sockjs client: " + new Date());
+        };
+
+        sock.onmessage = function(event) {
+            console.log("sockjs client received message")
+            console.log(event.data)
+            //sock.close();
+        };
+
+        sock.onclose = function() {
+            console.log("sockjs client closed");
+        }
+    }
+</script>
+</html>
