@@ -25,6 +25,7 @@ public class MySessionHandshakeInterceptor extends HttpSessionHandshakeIntercept
         System.out.println(handler);
         System.out.println(attributes);
         System.out.println(request.getURI().getQuery());
+        System.out.println(request);
         return true;
     }
 

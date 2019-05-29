@@ -22,15 +22,15 @@ public class WebSocketConfig implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         // 原生WebSocket API
-        /*registry.addHandler(myHandler(), "/websocket/text")
-                .addInterceptors(new MySessionHandshakeInterceptor())   // 注册处理器
-                .setAllowedOrigins("*");                                // 设置域范围*/
-
-        // 使用SockJS
         registry.addHandler(myHandler(), "/websocket/text")
                 .addInterceptors(new MySessionHandshakeInterceptor())   // 注册处理器
+                .setAllowedOrigins("*");                                // 设置域范围
+
+        // 使用SockJS
+        /*registry.addHandler(myHandler(), "/websocket/text")
+                .addInterceptors(new MySessionHandshakeInterceptor())   // 注册处理器
                 .setAllowedOrigins("*")                                 // 设置域范围
-                .withSockJS();                                          // 开启SockJS支持
+                .withSockJS();                                          // 开启SockJS支持*/
     }
 
     @Bean

@@ -1,5 +1,6 @@
 package org.chench.springboot.falsework.config;
 
+import org.chench.springboot.falsework.websocket.MySessionHandshakeInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
@@ -22,14 +23,16 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
  * @desc org.chench.springboot.falsework.config.WebSocketStompConfig
  * @date 5/28/19 3:32 PM
  */
-@Configuration
-@EnableWebSocketMessageBroker
+//@Configuration
+//@EnableWebSocketMessageBroker
 public class WebSocketStompConfig implements WebSocketMessageBrokerConfigurer {
     private static final Logger logger = LoggerFactory.getLogger(WebSocketStompConfig.class);
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/websocket/stomp").withSockJS();
+        registry.addEndpoint("/websocket/stomp")
+                //.addInterceptors(new MySessionHandshakeInterceptor())
+                .withSockJS();
     }
 
     @Override
