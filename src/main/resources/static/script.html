@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在Java中调用脚本语言</title>
+    <link rel="stylesheet" href="codemirror.css">
+    <link rel="stylesheet" href="eclipse.css">
+</head>
+<body>
+<div>
+    <form action="/script/execute" enctype="application/x-www-form-urlencoded" method="post">
+        <div>
+            <textarea rows="10" cols="80" name="scripts" id="scripts">
+                function execute(instance) {
+                   return "hello: " + instance.name;
+                }
+            </textarea>
+        </div>
+        <div>
+            <input type="checkbox" name="storage">存储
+            <input type="checkbox" name="time">即时计算
+        </div>
+        <div>
+            <input type="submit" value="执行">
+        </div>
+    </form>
+</div>
+</body>
+<script type="text/javascript" src="codemirror.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        console.log("init...");
+        var script = "function execute(instance) {\r\n" + " \treturn \"hello: \" + instance.name;" + "\r\n}";
+        $("#scripts").val(script);
+    });
+</script>
+<script>
+    // 接口函数
+    function execute(instance) {
+        // 读取传递的物实例属性，执行计算并返回结果
+        //return "hello: " + instance.name;
+        return sayHello(instance.name);
+    }
+
+    // 自定义函数
+    function sayHello(name) {
+        return "Hi:" + name;
+    }
+</script>
+<script>
+    var editor = CodeMirror.fromTextArea(scripts, {
+        lineNumbers: true,
+        styleActiveLine: true,
+        matchBrackets: true
+    });
+    editor.setOption("theme", "eclipse");
+</script>
+</html>
