@@ -23,14 +23,14 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
  * @desc org.chench.springboot.falsework.config.WebSocketStompConfig
  * @date 5/28/19 3:32 PM
  */
-//@Configuration
-//@EnableWebSocketMessageBroker
+@Configuration
+@EnableWebSocketMessageBroker
 public class WebSocketStompConfig implements WebSocketMessageBrokerConfigurer {
     private static final Logger logger = LoggerFactory.getLogger(WebSocketStompConfig.class);
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/websocket/stomp")
+        registry.addEndpoint("/stomp")
                 //.addInterceptors(new MySessionHandshakeInterceptor())
                 .withSockJS();
     }

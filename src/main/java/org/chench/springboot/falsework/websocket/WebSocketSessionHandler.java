@@ -7,6 +7,7 @@ import org.springframework.web.socket.WebSocketSession;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -29,12 +30,22 @@ public class WebSocketSessionHandler {
     }
 
     public void sendMsg(String msg) {
-        for(WebSocketSession session : sessions) {
+        Iterator<WebSocketSession> it = sessions.iterator();
+        while(it.hasNext()) {
+            WebSocketSession session = it.next();
             try {
                 session.sendMessage(new TextMessage(msg));
             } catch (IOException e) {
                 logger.error("send msg error: {}, {}", session, msg);
                 e.printStackTrace();
+                try {
+                    // 关闭会话,同时将session对象移除集合
+                    session.close();
+                    //sessions.remove(session);
+                    it.remove();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
         }
     }

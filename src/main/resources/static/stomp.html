@@ -64,7 +64,8 @@
     }
 
     function connect() {
-        var url = "http://localhost:8080/websocket/stomp";
+        var url = "http://localhost:8090/stomp";
+        // var url = "/websocket/stomp";
         var sock = new SockJS(url);
         stompClient = Stomp.over(sock);
         stompClient.connect(headers, function(frame){
