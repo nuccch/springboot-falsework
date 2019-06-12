@@ -27,10 +27,11 @@ public class WebSocketConfig implements WebSocketConfigurer {
                 .setAllowedOrigins("*");                                // 设置域范围
 
         // 使用SockJS
-        /*registry.addHandler(myHandler(), "/websocket/text")
+        registry.addHandler(myHandler(), "/sockjs/text")
                 .addInterceptors(new MySessionHandshakeInterceptor())   // 注册处理器
                 .setAllowedOrigins("*")                                 // 设置域范围
-                .withSockJS();                                          // 开启SockJS支持*/
+                .withSockJS()                                           // 开启SockJS支持
+                .setHeartbeatTime(10000);                               // 设置心跳时间间隔，默认25秒: 25000
     }
 
     @Bean
