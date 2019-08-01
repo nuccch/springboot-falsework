@@ -1,5 +1,6 @@
 package org.chench.springboot.falsework.websocket;
 
+import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -16,5 +17,21 @@ public class MyTextHandler extends TextWebSocketHandler {
         System.out.println(session.getId() + ": " + message.getPayload());
         session.sendMessage(new TextMessage("Hello, client: " + session.getId() + " msg: " + message.getPayload()));
         WebSocketSessionHandler.getInstance().saveSession(session);
+    }
+
+    @Override
+    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+        // 连接建立之后
+        System.out.println("连接建立之后:");
+        System.out.println(session.getUri().getQuery());
+        super.afterConnectionEstablished(session);
+    }
+
+    @Override
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+        // 连接关闭之后
+        System.out.println("连接关闭之后:");
+        System.out.println(status.toString());
+        super.afterConnectionClosed(session, status);
     }
 }

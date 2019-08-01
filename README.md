@@ -29,7 +29,7 @@
 ## 集成组件说明
 
 
-
++ 集成swagger生成API文档
 + 支持WebSocket
 + 集成日志框架：slf4j + logback，其中logback配置文件为logback.xml
 + 集成MyBatis，运行时参数配置文件为mybatis-config.xml
