@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 @Api(tags = "用户相关接口", description = "提供用户相关管理操作")
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class SwaggerController {
     /**
      * 添加用户
      * @param req

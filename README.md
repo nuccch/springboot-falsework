@@ -29,10 +29,9 @@
 ## 集成组件说明
 
 + 支持应用启动时自动执行数据库表DDL(指定文件)
-+ 集成Spring for Apache Kafka实现消息发送与消费
 + 集成swagger生成API文档
 + 支持WebSocket
 + 集成日志框架：slf4j + logback，其中logback配置文件为logback.xml
-+ 集成MyBatis，运行时参数配置文件为mybatis-config.xml
++ 集成MyBatis，运行时参数配置文件为mybatis-config.xml，支持接口形式的映射器和xml形式的映射器
 + 集成fastjson
 + 集成druid

@@ -34,7 +34,8 @@ public class AccountController {
     public Object list(HttpServletRequest req, HttpServletResponse resp,
                        @RequestParam("start") int start,
                        @RequestParam("offset") int offset) {
-        List<Account> accountList = accountService.getAccoutList(start, offset);
+        //List<Account> accountList = accountService.getAccoutListByInt(start, offset);
+        List<Account> accountList = accountService.getAccountListByXML(start, offset);
         if(logger.isDebugEnabled()) {
             logger.debug("account list: {}", accountList);
         }
