@@ -14,21 +14,21 @@ esac
 
 export LANG=en_US.UTF-8
 base_dir=${bin_absolute_path}/..
-#pid_file=$base_dir/bin/pid
-pid_file=/var/run/dt.pid
+pid_file=$base_dir/bin/pid
+#pid_file=/var/run/dt.pid
 
 #curl -X POST http://127.0.0.1:8000/ops/shutdown
-curl -X POST http://127.0.0.1:8000/ops/shutdown --connect-timeout 3 --max-time 5
+curl -X POST http://127.0.0.1:8081/ops/shutdown --connect-timeout 3 --max-time 5
 
 # check process exists
-count=`ps -ef |grep digitaltwin |grep -v "grep" |wc -l`
+count=`ps -ef |grep SpringbootFalseworkApplication |grep -v "grep" |wc -l`
 if [ $count -gt 0 ]; then
     if [ -f "$pid_file" ]; then
         pid=`cat $pid_file`
-        kill -9 $pid
+        kill -15 $pid
     else
-        pid=`ps -ef |grep digitaltwin |grep -v "grep"| awk '{print $2}'`
-        kill -9 $pid
+        pid=`ps -ef |grep SpringbootFalseworkApplication |grep -v "grep"| awk '{print $2}'`
+        kill -15 $pid
     fi
 fi
 

@@ -32,8 +32,6 @@ public class JsonRespController {
         }
         dis.close();
         Object obj = JSONArray.parse(new String(bos.toByteArray()));
-        JsonResp jsonResp = new JsonResp();
-        jsonResp.setData(obj);
-        return jsonResp;
+        return JsonResp.httpCode(resp, HttpServletResponse.SC_OK).success(obj);
     }
 }

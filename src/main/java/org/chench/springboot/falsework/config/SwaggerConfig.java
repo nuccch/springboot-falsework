@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 集成swagger
+ * 集成swagger进程API文档管理
  * @author chench9@lenovo.com
  * @desc org.chench.springboot.falsework.config.SwaggerConfig
  * @date 7/21/19 4:46 PM

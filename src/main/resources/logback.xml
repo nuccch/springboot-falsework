@@ -9,7 +9,7 @@
     　　
     <!--  输出到文件 -->
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>springboot-falsework.log</file>
+        <file>${log.dir}/springboot-falsework.log</file>
         <encoder>
             <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
         </encoder>
