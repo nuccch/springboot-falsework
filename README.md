@@ -24,6 +24,15 @@
 ## 如何使用
 
 这个项目基于Maven进行构建，克隆到本地后，直接导入IDEA或者Eclipse，修改对应的项目名称以及一些其他参数就可以使用了。
+在对这个基础框架项目进行改造之前，建议先运行一下程序确认是否可用（需要修改application-dev.properties文件中关于MySQL数据库的连接配置）。
+
+具体需要修改的项目包括：
+- 将项目名称重命名为指定名称，分为2步走：(1)直接重命名项目目录名 (2)修改pom.xml文件中的`<groupId>`和`<artifactId>`，以及`<version>`。
+- 重命名根包:将项目根包`org.chench.springboot.falsework`，这个操作建议在IDE中完成。
+- 将bin目录下启动脚本startup.sh中的启动主类`org.chench.springboot.falsework.SpringbootFalseworkApplication`修改为指定启动类
+- 修改bin目录下停止脚本shutdown.sh中判断进程是否存活的进程名称`SpringbootFalseworkApplication`为实际的项目进程名称
+
+其他信息可以参考doc目录下的developer.md文件内容。
 
 
 ## 集成组件说明
