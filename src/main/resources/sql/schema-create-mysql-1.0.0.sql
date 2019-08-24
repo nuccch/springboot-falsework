@@ -3,8 +3,7 @@
 -- flush privileges;
 
 -- 账户表
--- create table if not exists `account` (
-create table `account` (
+create table if not exists `account` (
   `id`    bigint(20)   not null auto_increment,
   `name`  varchar(255) not null default '' comment '姓名',
   `email` varchar(30)  not null default '' comment '邮箱',

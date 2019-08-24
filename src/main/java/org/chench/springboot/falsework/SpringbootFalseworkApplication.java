@@ -16,12 +16,25 @@ public class SpringbootFalseworkApplication {
 
 	public static void main(String[] args) {
 	    logger.info("Start ...");
-        addShutdownHook();
+	    initEnv();
+        addShutdsownHook();
 		SpringApplication.run(SpringbootFalseworkApplication.class, args);
 		logger.info("Start DONE.");
 	}
 
-	private static void addShutdownHook() {
+	// 初始化环境变量
+	private static void initEnv() {
+	    // 设置日志目录
+	    String logDirKey = "log.dir";
+	    String logDirValue = System.getProperty(logDirKey);
+	    if(logDirValue == null || "".equals(logDirValue.trim())) {
+	        logDirValue = "./logs";
+        }
+	    System.setProperty(logDirKey, logDirValue);
+    }
+
+    // 注册应用关闭钩子
+	private static void addShutdsownHook() {
         // 在Spring Boot应用中通过监听信号量和注册关闭钩子来实现在进程退出之前执行收尾工作
         // 监听信号量
         Signal sg = new Signal("TERM");
