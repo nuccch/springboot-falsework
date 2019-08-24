@@ -27,6 +27,7 @@
 
 /.idea/
 /.mvn/
+/release/
 *.log
 *.iml
 mvnw

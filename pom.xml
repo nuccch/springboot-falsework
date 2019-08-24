@@ -5,7 +5,7 @@
 
     <groupId>org.chench</groupId>
     <artifactId>springboot-falsework</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <name>springboot-falsework</name>
@@ -22,6 +22,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <build.number>${maven.build.timestamp}</build.number>
         <java.version>1.8</java.version>
         <version.fastjson>1.2.47</version.fastjson>
         <version.slf4j>1.7.25</version.slf4j>
@@ -137,18 +138,101 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
         </dependency>
-
     </dependencies>
+
+    <!-- 将开发配置和生产配置分离开 -->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <profile.dir>dev</profile.dir>
+            </properties>
+        </profile>
+        <profile>
+            <id>integration</id>
+            <properties>
+                <profile.dir>integration</profile.dir>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profile.dir>test</profile.dir>
+            </properties>
+        </profile>
+        <profile>
+            <id>demo</id>
+            <properties>
+                <profile.dir>demo</profile.dir>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profile.dir>prod</profile.dir>
+            </properties>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
             <!-- 打包可直接运行的jar包 -->
+            <!--
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <executable>true</executable>
                 </configuration>
+            </plugin>
+            -->
+
+            <!-- 生成jar包时打包资源文件配置 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/profiles/**</exclude>
+                        <exclude>**/sql/*.bak</exclude>
+                        <exclude>**/application*.properties</exclude>
+                        <exclude>**/j2cache*.properties</exclude>
+                        <exclude>**/caffeine*.properties</exclude>
+                        <exclude>**/messages*.properties</exclude>
+                        <exclude>**/email.properties</exclude>
+                        <exclude>**/logback.xml</exclude>
+                        <exclude>**/mybatis-config.xml</exclude>
+                        <exclude>**/*.tmp</exclude>
+                        <exclude>**/templates/**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <!-- 部署打包: 通过maven-assembly插件压缩为tar包进行发布 -->
+            <!-- 版本号参数：build.number通过打包脚本传递进来 -->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <attach>false</attach>
+                    <descriptors>
+                        <descriptor>assembly.xml</descriptor>
+                    </descriptors>
+                    <!--<finalName>${project.name}-${project.version}-${maven.build.timestamp}</finalName>-->
+                    <finalName>${project.name}-${project.version}-${build.number}</finalName>
+                    <outputDirectory>${basedir}/release</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

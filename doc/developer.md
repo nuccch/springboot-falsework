@@ -8,6 +8,14 @@
 -Dlog.dir=./logs    // 设置日志保存目录
 
 
+## 如何打包发布
+
+在项目根目录下有一个打包脚本：build.sh，直接运行该脚本即可完成打包。
+```shell
+bash build.sh
+```
+
+
 ## 关于数据库表自动初始化
 
 在Spring Boot中可以通过属性“spring.datasource.schema”设置在应用启动时执行的sql文件，来达到初始化数据表的目的。
