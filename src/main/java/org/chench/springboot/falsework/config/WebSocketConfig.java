@@ -43,11 +43,11 @@ public class WebSocketConfig implements WebSocketConfigurer {
      * 配置WebSocket引擎进行属性配置
      * @return
      */
-    @Bean
+    /*@Bean
     public ServletServerContainerFactoryBean createWebSocketContainer() {
         ServletServerContainerFactoryBean container = new ServletServerContainerFactoryBean();
         container.setMaxTextMessageBufferSize(8192);
         container.setMaxBinaryMessageBufferSize(8192);
         return container;
-    }
+    }*/
 }

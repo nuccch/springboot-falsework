@@ -10,7 +10,7 @@ import sun.misc.Signal;
 import sun.misc.SignalHandler;
 
 @SpringBootApplication
-@EnableScheduling                  // 支持定时任务调度
+//@EnableScheduling                  // 支持定时任务调度
 public class SpringbootFalseworkApplication {
     private static final Logger logger = LoggerFactory.getLogger(SpringbootFalseworkApplication.class);
 
