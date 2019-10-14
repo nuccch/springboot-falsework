@@ -171,10 +171,13 @@
         </dependency>
 
         <!--redis依赖配置-->
+        <!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
+        -->
+
         <!-- 集成J2Cache作为缓存接入框架 -->
         <dependency>
             <groupId>net.oschina.j2cache</groupId>
