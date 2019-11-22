@@ -53,6 +53,7 @@ OPTS_MEM="-server -Xms512m -Xmx1024m"
 OPTS_EXT="-Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8"
 OPTS_JAVA="$OPTS_EXT $OPTS_MEM $OPTS_APP"
 
+echo "Start..."
 nohup $JAVA $OPTS_JAVA -classpath $CLASSPATH org.chench.springboot.falsework.SpringbootFalseworkApplication >/dev/null 2>&1 & echo $! > $pid_file
 # debug
 # $JAVA $OPTS_JAVA -classpath $CLASSPATH org.chench.springboot.falsework.SpringbootFalseworkApplication
