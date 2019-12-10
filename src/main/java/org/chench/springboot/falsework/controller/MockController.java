@@ -1,10 +1,9 @@
 package org.chench.springboot.falsework.controller;
 
-import org.chench.springboot.falsework.model.JsonResp;
+import org.chench.springboot.falsework.util.JsonResp;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.spring.web.json.Json;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,14 +30,14 @@ public class MockController {
     @GetMapping("/re")
     public Object re(HttpServletRequest req, HttpServletResponse resp) {
         mockRuntimeException();
-        return JsonResp.httpCode(resp, HttpServletResponse.SC_OK).success();
+        return JsonResp.success();
     }
 
 
     @GetMapping("/oom")
     public Object oom(HttpServletRequest req, HttpServletResponse resp) {
         mockOOM();
-        return JsonResp.httpCode(resp, HttpServletResponse.SC_OK).success();
+        return JsonResp.success();
     }
 
 

@@ -1,7 +1,7 @@
 package org.chench.springboot.falsework.controller;
 
 import org.chench.springboot.falsework.model.Account;
-import org.chench.springboot.falsework.model.JsonResp;
+import org.chench.springboot.falsework.util.JsonResp;
 import org.chench.springboot.falsework.service.AccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -39,6 +38,6 @@ public class AccountController {
         if(logger.isDebugEnabled()) {
             logger.debug("account list: {}", accountList);
         }
-        return JsonResp.httpCode(resp, JsonResp.CODE_SUCCESS).success(accountList == null ? Collections.emptyList() : accountList);
+        return JsonResp.success(accountList == null ? Collections.emptyList() : accountList);
     }
 }
