@@ -32,6 +32,7 @@ public class SpringbootFalseworkApplication {
     }
 
     // 注册应用关闭钩子
+    // 注意：程序在执行过程中出现RuntimeException和OOM，不会触发关闭钩子执行
 	private static void addShutdsownHook() {
         // 在Spring Boot应用中通过监听信号量和注册关闭钩子来实现在进程退出之前执行收尾工作
         // 监听信号量
