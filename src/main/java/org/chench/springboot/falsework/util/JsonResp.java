@@ -23,7 +23,7 @@ public class JsonResp {
     }
 
     public static JsonResp error() {
-        return error(CodeMessage.ERROR, new JSONObject());
+        return error(CodeMessage.INTERNAL_SERVER_ERROR, new JSONObject());
     }
 
     public static JsonResp error(CodeMessage cm) {

@@ -19,7 +19,8 @@ public enum CodeMessage {
     FORBIDDEN(40003, "Forbidden"),                              // 禁止访问
     NOT_FOUND(40004, "Not Found"),                              // 资源未找到
     METHOD_NOT_ALLOWED(4005, "Method Not Allowed"),             // 访问不允许被访问
-    ERROR(5000, "Error");                                       // 服务内部错误
+    INTERNAL_SERVER_ERROR(5000, "Internal Server Error"),       // 服务内部错误
+    UNKNOWN_ERROR(5001, "Unknown Error");                       // 未知错误
 
     private int code = 0;
     private String message = "";
